@@ -9,16 +9,13 @@ services:
         sync: false
       - key: SECRET_KEY
         sync: false
-    plan: free
     rootDir: sales-app-backend
 
-  - type: web
+  - type: static
     name: sales-app-frontend
-    env: static
     buildCommand: npm install && npm run build
     staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
         value: https://sales-app-backend.onrender.com/api/v1
-    plan: free
     rootDir: sales-app-frontend
