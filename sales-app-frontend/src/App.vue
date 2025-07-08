@@ -1,95 +1,65 @@
 <template>
-  <div id="app">
-    <!-- Main Content Area -->
-    <main class="main-content">
-      <RouterView />
-    </main>
+  <f7-page name="home" class="home-page">
+    <f7-navbar title="Sales App" />
 
-    <!-- Bottom Navigation -->
-    <BottomNavigation 
-      :current-tab="currentTab" 
-      :alert-count="5"
-      @tab-change="handleTabChange" 
-    />
-  </div>
+    <f7-block class="text-align-center intro-block">
+      <h2 class="intro-title">Welcome</h2>
+      <p class="intro-subtitle">Select a tool below</p>
+    </f7-block>
+
+    <f7-list strong inset dividers>
+      <f7-card v-for="tool in tools" :key="tool.path" class="nav-card">
+        <f7-card-content padding>
+          <f7-button fill large class="card-button" @click="$router.push(tool.path)">
+            {{ tool.label }}
+          </f7-button>
+        </f7-card-content>
+      </f7-card>
+    </f7-list>
+  </f7-page>
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import BottomNavigation from '@/components/BottomNavigation.vue'
-
-const route = useRoute()
-const router = useRouter()
-
-// Current tab state
-const currentTab = ref('dashboard')
-
-// Watch route changes to update current tab
-watch(
-  () => route.path,
-  (newPath) => {
-    // Map routes to tab names
-    const routeToTab: Record<string, string> = {
-      '/': 'dashboard',
-      '/dealers': 'dealers',
-      '/products': 'products',
-      '/locator': 'map',
-      '/attention': 'alerts',
-      '/profile': 'profile'
-    }
-    
-    currentTab.value = routeToTab[newPath] || 'dashboard'
-  },
-  { immediate: true }
-)
-
-// Handle tab changes from bottom navigation
-const handleTabChange = (tab: string) => {
-  currentTab.value = tab
-  
-  // Navigate based on tab
-  const tabToRoute: Record<string, string> = {
-    'dashboard': '/',
-    'dealers': '/dealers',
-    'products': '/products',
-    'map': '/locator',
-    'alerts': '/attention',
-    'profile': '/profile'
-  }
-  
-  const targetRoute = tabToRoute[tab]
-  if (targetRoute && targetRoute !== route.path) {
-    router.push(targetRoute)
-  }
-}
+const tools = [
+  { label: 'Product Info', path: '/products/' },
+  { label: 'Promotions', path: '/promotions/' },
+  { label: 'Technical Info', path: '/tech/' },
+  { label: 'Product Chooser', path: '/choose/' },
+  { label: 'Dealer Locator', path: '/locator/' },
+]
 </script>
 
-<style>
-/* Global App Styles */
-#app {
-  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  background: linear-gradient(180deg, var(--bg-light, #f8fafc) 0%, #e2e8f0 100%);
-  min-height: 100vh;
-  color: var(--text-dark, #1a202c);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+<style scoped>
+.home-page {
+  background-color: #f2f2f7;
 }
 
-.main-content {
-  padding-bottom: 80px; /* Space for bottom navigation */
-  min-height: calc(100vh - 80px);
+.intro-block {
+  margin-top: 32px;
+  margin-bottom: 16px;
 }
 
-/* Ensure RouterView transitions work smoothly */
-.router-view {
-  transition: all 0.3s ease;
+.intro-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1c1c1e;
 }
 
-/* Global responsive adjustments */
-@media (max-width: 768px) {
-  .main-content {
-    padding-bottom: 70px;
-  }
+.intro-subtitle {
+  font-size: 16px;
+  color: #6e6e73;
+}
+
+.nav-card {
+  margin-bottom: 12px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.card-button {
+  width: 100%;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 500;
 }
 </style>
