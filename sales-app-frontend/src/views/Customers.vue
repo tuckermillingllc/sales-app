@@ -1,3 +1,4 @@
+
 <template>
   <div>
     <h2>Customers</h2>
@@ -9,18 +10,22 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import API from '@/services/api'
+import api from '@/services/api'
 
-const customers = ref([])
+// ✅ Define the customer type
+interface Customer {
+  id: number
+  name: string
+}
+
+// ✅ Use the type in the ref
+const customers = ref<Customer[]>([])
 
 onMounted(async () => {
-  try {
-    const response = await API.get('/customers/')
-    customers.value = response.data
-  } catch (error) {
-    console.error('Failed to load customers:', error)
-  }
+  const response = await api.get('/customers')
+  customers.value = response.data
 })
 </script>
+
