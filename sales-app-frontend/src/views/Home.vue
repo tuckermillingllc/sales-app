@@ -16,9 +16,9 @@ import API from '@/services/api'
 interface Customer {
   id: number
   name: string
-  // add any other expected fields here
+  email: string
+  phone?: string  // optional if not all customers have phone numbers
 }
-
 const customers = ref<Customer[]>([])
 
 onMounted(async () => {
