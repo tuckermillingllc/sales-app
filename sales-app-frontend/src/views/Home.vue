@@ -662,7 +662,7 @@ body {
 }
 
 .company-logo {
-  height: 64px;
+  height: 96px;
   width: auto;
   object-fit: contain;
 }
