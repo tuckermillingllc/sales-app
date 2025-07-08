@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <div>
+    <CustomerCard v-for="customer in customers" :key="customer.id" :customer="customer" />
+  </div>
 </template>
