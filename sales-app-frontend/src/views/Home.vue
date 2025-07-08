@@ -5,10 +5,9 @@
       <div class="header-content">
         <div class="brand-section">
           <div class="logo-container">
-            <img src="@/assets/tucker-logo.png" alt="Tucker Milling" class="company-logo" />
+            <img :src="tuckerLogo" alt="Tucker Milling" class="company-logo" />
           </div>
           <div class="brand-text">
-      
             <p class="tagline">Sales Management Portal</p>
           </div>
         </div>
@@ -339,6 +338,104 @@
           </div>
         </div>
       </div>
+
+      <!-- Top 20 Products Card -->
+      <div class="dashboard-card secondary-card" @click="navigateTo('/top-products')">
+        <div class="card-header">
+          <div class="card-icon top-products-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+              <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+              <path d="M12 11h4"/>
+              <path d="M12 16h4"/>
+              <path d="M8 11h.01"/>
+              <path d="M8 16h.01"/>
+            </svg>
+          </div>
+          <div class="card-title-section">
+            <h3 class="card-title">Top Products</h3>
+            <p class="card-subtitle">Best sellers this month</p>
+          </div>
+          <div class="card-action">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="m9 18 6-6-6-6"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="ranking-stats">
+            <div class="ranking-metric">
+              <span class="metric-value">20</span>
+              <span class="metric-label">Products Ranked</span>
+            </div>
+            <div class="ranking-metric">
+              <span class="metric-value">$485K</span>
+              <span class="metric-label">Total Revenue</span>
+            </div>
+          </div>
+          <div class="top-products-list">
+            <div v-for="(product, index) in topProducts" :key="product.id" class="ranking-item">
+              <div class="rank-indicator">{{ index + 1 }}</div>
+              <div class="product-details">
+                <span class="product-name">{{ product.name }}</span>
+                <span class="product-category">{{ product.category }}</span>
+              </div>
+              <div class="sales-data">
+                <span class="sales-volume">{{ product.salesVolume }}</span>
+                <span class="revenue-amount">${{ product.revenue }}K</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fastest Growing Products Card -->
+      <div class="dashboard-card accent-card" @click="navigateTo('/growing-products')">
+        <div class="card-header">
+          <div class="card-icon growth-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 3v18h18"/>
+              <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+              <path d="M13 7h6v6"/>
+            </svg>
+          </div>
+          <div class="card-title-section">
+            <h3 class="card-title">Fastest Growing</h3>
+            <p class="card-subtitle">Trending products</p>
+          </div>
+          <div class="trending-indicator">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17l9.2-9.2M17 17V7H7"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="growth-summary">
+            <div class="growth-metric">
+              <span class="metric-value growth-positive">+28%</span>
+              <span class="metric-label">Avg Growth Rate</span>
+            </div>
+            <div class="growth-metric">
+              <span class="metric-value">5</span>
+              <span class="metric-label">Trending Products</span>
+            </div>
+          </div>
+          <div class="growth-products-list">
+            <div v-for="product in fastestGrowingProducts" :key="product.id" class="growth-item">
+              <div class="product-info">
+                <span class="product-name">{{ product.name }}</span>
+                <span class="growth-period">{{ product.period }}</span>
+              </div>
+              <div class="growth-indicator-badge" :class="getGrowthClass(product.growthRate)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M7 17l9.2-9.2M17 17V7H7"/>
+                </svg>
+                {{ product.growthRate }}%
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -346,6 +443,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
+import tuckerLogo from '@/assets/tucker-logo.png'
 
 // Types
 interface Dealer {
@@ -380,6 +478,21 @@ interface Replacement {
   competitor: string
   competitorProduct: string
   tuckerProduct: string
+}
+
+interface TopProduct {
+  id: number
+  name: string
+  category: string
+  salesVolume: string
+  revenue: number
+}
+
+interface GrowingProduct {
+  id: number
+  name: string
+  period: string
+  growthRate: number
 }
 
 // Router
@@ -437,6 +550,28 @@ const competitiveReplacements = ref<Replacement[]>([
   { id: 2, competitor: 'Nutrena', competitorProduct: 'SafeChoice Senior', tuckerProduct: 'Senior Complete' },
   { id: 3, competitor: 'Triple Crown', competitorProduct: 'Senior Formula', tuckerProduct: 'Golden Years' }
 ])
+
+const topProducts = ref<TopProduct[]>([
+  { id: 1, name: 'Show Flock Layer 22', category: 'Poultry Feed', salesVolume: '2,450 bags', revenue: 98 },
+  { id: 2, name: 'Strategy Healthy Edge', category: 'Horse Feed', salesVolume: '1,890 bags', revenue: 85 },
+  { id: 3, name: 'Ultium Competition', category: 'Horse Feed', salesVolume: '1,675 bags', revenue: 78 },
+  { id: 4, name: 'Safe Choice Original', category: 'Horse Feed', salesVolume: '1,540 bags', revenue: 72 },
+  { id: 5, name: 'Broiler Maker 22', category: 'Poultry Feed', salesVolume: '1,320 bags', revenue: 65 }
+])
+
+const fastestGrowingProducts = ref<GrowingProduct[]>([
+  { id: 1, name: 'Strategy Healthy Edge', period: 'Last 30 days', growthRate: 42 },
+  { id: 2, name: 'Ultium Growth', period: 'Last 30 days', growthRate: 38 },
+  { id: 3, name: 'Show Flock Layer 22', period: 'Last 30 days', growthRate: 28 },
+  { id: 4, name: 'Broiler Maker 22', period: 'Last 30 days', growthRate: 24 },
+  { id: 5, name: 'Safe Choice Senior', period: 'Last 30 days', growthRate: 18 }
+])
+
+const getGrowthClass = (growthRate: number): string => {
+  if (growthRate >= 35) return 'growth-high'
+  if (growthRate >= 20) return 'growth-medium'
+  return 'growth-low'
+}
 
 // Computed
 const attentionCount = computed(() => attentionDealers.value.length)
@@ -1132,4 +1267,111 @@ const getProductReason = (productName: string): string => {
     font-size: 1.875rem;
   }
 }
+
+.growth-indicator-badge.growth-high {
+  background: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+}
+
+.growth-indicator-badge.growth-medium {
+  background: #fefbf0;
+  color: #f59e0b;
+  border: 1px solid #fed7aa;
+}
+
+.growth-indicator-badge.growth-low {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.ranking-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #f3f4f6;
+  margin-bottom: 8px;
+}
+
+.rank-indicator {
+  width: 24px;
+  height: 24px;
+  background: #6b7280;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.product-category {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.sales-data {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.sales-volume {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.revenue-amount {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.growth-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #f3f4f6;
+  margin-bottom: 8px;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.growth-period {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.growth-indicator-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.growth-indicator-badge svg {
+  width: 12px;
+  height: 12px;
+}
+
 </style>

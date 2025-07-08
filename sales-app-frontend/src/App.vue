@@ -76,9 +76,30 @@ const handleTabChange = (tab: string) => {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Fix status bar background to match page */
+body {
+  background: #fafbfc !important;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure the viewport background matches */
+html {
+  background: #fafbfc !important;
+}
+
+/* Status bar area styling for iOS */
+@supports (padding-top: env(safe-area-inset-top)) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    background: #fafbfc !important;
+  }
+}
+
 .main-content {
   padding-bottom: 80px; /* Space for bottom navigation */
   min-height: calc(100vh - 80px);
+  background: #fafbfc;
 }
 
 /* Ensure RouterView transitions work smoothly */
