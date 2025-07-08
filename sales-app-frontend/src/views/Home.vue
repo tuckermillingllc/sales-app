@@ -4,8 +4,13 @@
     <div class="header">
       <div class="header-content">
         <div class="brand-section">
-          <h1>Tucker Milling</h1>
-          <p class="tagline">Sales Management Portal</p>
+          <div class="logo-container">
+            <img src="@/assets/tucker-logo.png" alt="Tucker Milling" class="company-logo" />
+          </div>
+          <div class="brand-text">
+      
+            <p class="tagline">Sales Management Portal</p>
+          </div>
         </div>
         <div class="stats-overview">
           <div class="stat-item">
@@ -496,7 +501,29 @@ const getProductReason = (productName: string): string => {
   align-items: center;
 }
 
-.brand-section h1 {
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.company-logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-text h1 {
   font-size: 2.25rem;
   font-weight: 700;
   color: #1f2937;
@@ -1071,6 +1098,16 @@ const getProductReason = (productName: string): string => {
     text-align: center;
   }
   
+  .brand-section {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+  
+  .company-logo {
+    height: 40px;
+  }
+  
   .stats-overview {
     gap: 24px;
   }
@@ -1085,6 +1122,14 @@ const getProductReason = (productName: string): string => {
   .stats-overview {
     flex-direction: column;
     gap: 16px;
+  }
+  
+  .company-logo {
+    height: 36px;
+  }
+  
+  .brand-text h1 {
+    font-size: 1.875rem;
   }
 }
 </style>
