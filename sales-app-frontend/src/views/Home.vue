@@ -688,22 +688,21 @@ body {
 
 .stats-overview {
   display: flex;
-  gap: 32px; /* Reduced gap since we're grouping items */
-  align-items: center;
+  gap: 32px;
+  align-items: flex-start; /* Align items to top/left */
+  justify-content: flex-start; /* Start from left side */
 }
 
-/* Group the first two stats together */
 .dealer-stats-group {
   display: flex;
   gap: 48px;
-  align-items: center;
+  align-items: flex-start; /* Match parent alignment */
 }
 
 .stat-item {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start; /* Left align stat content */
 }
 
 .stat-value {
