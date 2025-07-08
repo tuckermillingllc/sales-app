@@ -1,4 +1,3 @@
-// frontend/src/components/CustomerCard.vue
 <template>
   <div class="customer-card">
     <h3>{{ customer.name }}</h3>
@@ -7,10 +6,17 @@
   </div>
 </template>
 
-<script setup>
-defineProps({
-  customer: Object,
-})
+<script setup lang="ts">
+interface Customer {
+  id: number
+  name: string
+  email: string
+  phone?: string
+}
+
+defineProps<{
+  customer: Customer
+}>()
 </script>
 
 <style scoped>
