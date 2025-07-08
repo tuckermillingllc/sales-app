@@ -688,21 +688,23 @@ body {
 
 .stats-overview {
   display: flex;
-  gap: 32px;
-  align-items: flex-start; /* Align items to top/left */
-  justify-content: flex-start; /* Start from left side */
+  flex-direction: column; /* Stack rows vertically */
+  align-items: flex-start; /* Left align the rows */
+  gap: 24px; /* Space between rows */
 }
 
 .dealer-stats-group {
   display: flex;
-  gap: 48px;
-  align-items: flex-start; /* Match parent alignment */
+  gap: 48px; /* Space between Active Dealers and Need Attention */
+  align-items: flex-start;
 }
 
+/* Center values over labels within each stat item */
 .stat-item {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Left align stat content */
+  align-items: center; /* Center the content horizontally */
+  text-align: center; /* Center the text */
 }
 
 .stat-value {
@@ -719,6 +721,18 @@ body {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+/* Responsive: Stack everything vertically on small screens */
+@media (max-width: 480px) {
+  .stats-overview {
+    gap: 20px;
+  }
+  
+  .dealer-stats-group {
+    flex-direction: column; /* Stack Active Dealers and Need Attention vertically too */
+    gap: 20px;
+  }
 }
 
 .dashboard-grid {
@@ -1295,15 +1309,7 @@ body {
     height: 52px;
   }
   
-  .stats-overview {
-    flex-direction: column;
-    gap: 20px;
-  }
   
-  .dealer-stats-group {
-    gap: 24px;
-  }
-
   .metrics-row {
     flex-direction: column;
     gap: 16px;
