@@ -13,7 +13,7 @@
     </div>
     <div class="stats-overview">
       <!-- Group Active Dealers and Need Attention together -->
-      <div class="dealer-stats-group">
+
         <div class="stat-item">
           <span class="stat-value">{{ totalDealers }}</span>
           <span class="stat-label">Active Dealers</span>
@@ -22,15 +22,15 @@
           <span class="stat-value">{{ attentionCount }}</span>
           <span class="stat-label">Need Attention</span>
         </div>
-      </div>
       <!-- Products stat separate -->
       <div class="stat-item">
         <span class="stat-value">156</span>
         <span class="stat-label">Products</span>
       </div>
     </div>
-  </div>
-</div>
+    </div>
+    </div>
+    
 
     <!-- Main Dashboard Grid -->
     <div class="dashboard-grid">
