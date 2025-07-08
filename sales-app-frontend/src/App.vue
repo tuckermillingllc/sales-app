@@ -69,7 +69,7 @@ const handleTabChange = (tab: string) => {
 /* Global App Styles */
 #app {
   font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  background: linear-gradient(180deg, var(--bg-light, #f8fafc) 0%, #e2e8f0 100%);
+  background: #ffffff; /* CHANGED: Was gradient, now solid white */
   min-height: 100vh;
   color: var(--text-dark, #1a202c);
   -webkit-font-smoothing: antialiased;
@@ -78,28 +78,28 @@ const handleTabChange = (tab: string) => {
 
 /* Fix status bar background to match page */
 body {
-  background: #fafbfc !important;
+  background: #ffffff !important; /* CHANGED: Was #fafbfc, now white */
   margin: 0;
   padding: 0;
 }
 
 /* Ensure the viewport background matches */
 html {
-  background: #fafbfc !important;
+  background: #ffffff !important; /* CHANGED: Was #fafbfc, now white */
 }
 
 /* Status bar area styling for iOS */
 @supports (padding-top: env(safe-area-inset-top)) {
   body {
     padding-top: env(safe-area-inset-top);
-    background: #fafbfc !important;
+    background: #ffffff !important; /* CHANGED: Was #fafbfc, now white */
   }
 }
 
 .main-content {
   padding-bottom: 80px; /* Space for bottom navigation */
   min-height: calc(100vh - 80px);
-  background: #fafbfc;
+  background: #ffffff; /* CHANGED: Was #fafbfc, now white */
 }
 
 /* Ensure RouterView transitions work smoothly */
