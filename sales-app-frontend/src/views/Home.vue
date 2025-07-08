@@ -693,18 +693,36 @@ body {
   gap: 24px; /* Space between rows */
 }
 
-.dealer-stats-group {
-  display: flex;
-  gap: 48px; /* Space between Active Dealers and Need Attention */
-  align-items: flex-start;
+.stats-overview-grid {
+  display: grid;
+  grid-template-columns: auto auto; /* Two columns, auto-sized */
+  grid-template-rows: auto auto; /* Two rows, auto-sized */
+  gap: 24px 48px; /* 24px vertical gap, 48px horizontal gap */
+  justify-content: start; /* Align to left */
 }
 
-/* Center values over labels within each stat item */
+/* Position items in grid */
+.stats-overview-grid .stat-item:nth-child(1) {
+  grid-column: 1; /* Active Dealers in column 1 */
+  grid-row: 1; /* Top row */
+}
+
+.stats-overview-grid .stat-item:nth-child(2) {
+  grid-column: 2; /* Need Attention in column 2 */
+  grid-row: 1; /* Top row */
+}
+
+.stats-overview-grid .products-stat {
+  grid-column: 1; /* Products in column 1 (under Active Dealers) */
+  grid-row: 2; /* Bottom row */
+}
+
+/* Center values over labels for both options */
 .stat-item {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center the content horizontally */
-  text-align: center; /* Center the text */
+  align-items: center;
+  text-align: center;
 }
 
 .stat-value {
@@ -723,15 +741,22 @@ body {
   letter-spacing: 0.05em;
 }
 
-/* Responsive: Stack everything vertically on small screens */
+/* Responsive: Stack all vertically on small screens */
 @media (max-width: 480px) {
-  .stats-overview {
+  .stats-overview,
+  .stats-overview-grid {
+    display: flex;
+    flex-direction: column;
     gap: 20px;
   }
   
   .dealer-stats-group {
-    flex-direction: column; /* Stack Active Dealers and Need Attention vertically too */
+    flex-direction: column;
     gap: 20px;
+  }
+  
+  .products-stat {
+    margin-left: 0;
   }
 }
 
@@ -1309,7 +1334,7 @@ body {
     height: 52px;
   }
   
-  
+
   .metrics-row {
     flex-direction: column;
     gap: 16px;
