@@ -658,7 +658,7 @@ body {
 }
 
 .company-logo {
-  height: 48px;
+  height: 64px;
   width: auto;
   object-fit: contain;
 }
@@ -684,7 +684,15 @@ body {
 
 .stats-overview {
   display: flex;
+  gap: 32px; /* Reduced gap since we're grouping items */
+  align-items: center;
+}
+
+/* Group the first two stats together */
+.dealer-stats-group {
+  display: flex;
   gap: 48px;
+  align-items: center;
 }
 
 .stat-item {
@@ -712,9 +720,14 @@ body {
 
 .dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 24px;
-  background: transparent; /* Ensure grid has no background */
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Reduced from 400px to 350px */
+  gap: 20px; /* Slightly reduced gap too */
+}
+
+.main-content {
+  padding-bottom: calc(90px + env(safe-area-inset-bottom)); /* Increased from 80px + added safe area */
+  min-height: calc(100vh - env(safe-area-inset-top) - 90px - env(safe-area-inset-bottom));
+  background: #ffffff;
 }
 
 .v-application {
@@ -723,11 +736,10 @@ body {
 
 /* Small screens: 1 column */
 @media (max-width: 768px) {
-  .dashboard-grid {
-    grid-template-columns: 1fr;
+  .main-content {
+    padding-bottom: calc(85px + env(safe-area-inset-bottom)); /* More buffer on mobile */
   }
 }
-
 /* Medium screens: 2 columns */
 @media (min-width: 769px) and (max-width: 1200px) {
   .dashboard-grid {
@@ -1277,13 +1289,18 @@ body {
   }
   
   .company-logo {
-    height: 40px;
+    height: 52px;
   }
   
   .stats-overview {
-    gap: 24px;
+    flex-direction: column;
+    gap: 20px;
   }
   
+  .dealer-stats-group {
+    gap: 24px;
+  }
+
   .metrics-row {
     flex-direction: column;
     gap: 16px;
