@@ -1327,7 +1327,7 @@ body {
   }
   
   .company-logo {
-    height: 52px;
+    height: 72px;
   }
   
 
