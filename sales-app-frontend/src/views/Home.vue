@@ -1,82 +1,69 @@
 <template>
   <f7-page name="home" class="home-page">
-    <f7-navbar title="DataLog" />
+    <f7-navbar title="Sales App" />
 
-    <f7-block class="welcome-block text-align-center">
-      <h2 class="welcome-title">Welcome</h2>
-      <p class="welcome-subtitle">Select a logging system to begin</p>
+    <f7-block class="text-align-center intro-block">
+      <h2 class="intro-title">Welcome</h2>
+      <p class="intro-subtitle">Select a tool below</p>
     </f7-block>
 
-    <f7-block class="button-grid">
-      <f7-row>
-        <f7-col width="50">
-          <f7-button fill large class="home-button larvae" @click="$emit('navigate', 'larvae')">
-            <f7-icon f7="leaf_arrow_circlepath" size="32px" />
-            <span>Larvae Logs</span>
-          </f7-button>
-        </f7-col>
-        <f7-col width="50">
-          <f7-button fill large class="home-button microwave" @click="$emit('navigate', 'microwave')">
-            <f7-icon f7="flame" size="32px" />
-            <span>Microwave Logs</span>
-          </f7-button>
-        </f7-col>
-      </f7-row>
+    <f7-block class="nav-buttons">
+      <f7-button fill large class="nav-button" @click="$f7router.navigate('/products/')">
+        Product Info
+      </f7-button>
 
-      <f7-row>
-        <f7-col width="50">
-          <f7-button fill large class="home-button prepupae" @click="$emit('navigate', 'prepupae')">
-            <f7-icon f7="ant" size="32px" />
-            <span>Prepupae Logs</span>
-          </f7-button>
-        </f7-col>
-        <f7-col width="50">
-          <f7-button fill large class="home-button updates" @click="$emit('navigate', 'updates')">
-            <f7-icon f7="chart_bar" size="32px" />
-            <span>Update Results</span>
-          </f7-button>
-        </f7-col>
-      </f7-row>
+      <f7-button fill large class="nav-button" @click="$f7router.navigate('/promotions/')">
+        Promotions
+      </f7-button>
+
+      <f7-button fill large class="nav-button" @click="$f7router.navigate('/tech/')">
+        Technical Info
+      </f7-button>
+
+      <f7-button fill large class="nav-button" @click="$f7router.navigate('/choose/')">
+        Product Chooser
+      </f7-button>
+
+      <f7-button fill large class="nav-button" @click="$f7router.navigate('/locator/')">
+        Dealer Locator
+      </f7-button>
     </f7-block>
   </f7-page>
 </template>
 
 <style scoped>
 .home-page {
-  background-color: #f8f8f8;
+  background-color: #f2f2f7;
 }
 
-.welcome-block {
+.intro-block {
   margin-top: 32px;
   margin-bottom: 16px;
 }
 
-.welcome-title {
-  font-size: 24px;
+.intro-title {
+  font-size: 22px;
   font-weight: 600;
   margin-bottom: 4px;
-  color: #111;
+  color: #1c1c1e;
 }
 
-.welcome-subtitle {
+.intro-subtitle {
   font-size: 16px;
-  color: #666;
+  color: #6e6e73;
 }
 
-.button-grid {
+.nav-buttons {
   padding: 0 16px;
 }
 
-.home-button {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100px;
-  font-size: 14px;
-}
-
-.home-button f7-icon {
-  margin-bottom: 8px;
+.nav-button {
+  margin-bottom: 16px;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: #007aff;
+  color: white;
+  border-radius: 12px;
 }
 </style>
