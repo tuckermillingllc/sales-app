@@ -232,7 +232,7 @@
             </svg>
           </div>
           <div class="card-title-section">
-            <h3 class="card-title">Knowledge Base</h3>
+            <h3 class="card-title">Frequently Asked Questions</h3>
             <p class="card-subtitle">Product information</p>
           </div>
           <div class="card-action">
@@ -616,7 +616,6 @@ const getProductReason = (productName: string): string => {
   max-width: 1400px;
   margin: 0 auto;
   padding: 32px 24px;
-  background: #fafbfc;
   min-height: 100vh;
 }
 
@@ -700,11 +699,30 @@ const getProductReason = (productName: string): string => {
   letter-spacing: 0.05em;
 }
 
-/* Dashboard Grid */
 .dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 24px;
+}
+
+/* Small screens: 1 column */
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Medium screens: 2 columns */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Large screens: 2 columns (wider cards) */
+@media (min-width: 1201px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* Card Styles */
