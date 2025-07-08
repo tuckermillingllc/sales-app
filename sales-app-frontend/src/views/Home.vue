@@ -2,31 +2,35 @@
   <div class="dashboard">
     <!-- Header Section -->
     <div class="header">
-      <div class="header-content">
-        <div class="brand-section">
-          <div class="logo-container">
-            <img :src="tuckerLogo" alt="Tucker Milling" class="company-logo" />
-          </div>
-          <div class="brand-text">
-            <p class="tagline">Sales Management Portal</p>
-          </div>
-        </div>
-        <div class="stats-overview">
-          <div class="stat-item">
-            <span class="stat-value">{{ totalDealers }}</span>
-            <span class="stat-label">Active Dealers</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-value">{{ attentionCount }}</span>
-            <span class="stat-label">Need Attention</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-value">156</span>
-            <span class="stat-label">Products</span>
-          </div>
-        </div>
+  <div class="header-content">
+    <div class="brand-section">
+      <div class="logo-container">
+        <img :src="tuckerLogo" alt="Tucker Milling" class="company-logo" />
+      </div>
+      <div class="brand-text">
+        <p class="tagline">Sales Management Portal</p>
       </div>
     </div>
+    <div class="stats-overview">
+      <!-- Group Active Dealers and Need Attention together -->
+      <div class="dealer-stats-group">
+        <div class="stat-item">
+          <span class="stat-value">{{ totalDealers }}</span>
+          <span class="stat-label">Active Dealers</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">{{ attentionCount }}</span>
+          <span class="stat-label">Need Attention</span>
+        </div>
+      </div>
+      <!-- Products stat separate -->
+      <div class="stat-item">
+        <span class="stat-value">156</span>
+        <span class="stat-label">Products</span>
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- Main Dashboard Grid -->
     <div class="dashboard-grid">
