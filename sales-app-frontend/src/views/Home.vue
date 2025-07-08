@@ -611,11 +611,22 @@ const getProductReason = (productName: string): string => {
 }
 </script>
 
+/* Remove all background colors from root elements */
+html {
+  background: #ffffff;
+}
+
+body {
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+}
 <style scoped>
 .dashboard {
   max-width: 1400px;
   margin: 0 auto;
   padding: 32px 24px;
+  background: transparent; 
   min-height: 100vh;
 }
 
@@ -701,7 +712,13 @@ const getProductReason = (productName: string): string => {
 
 .dashboard-grid {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 24px;
+  background: transparent; /* Ensure grid has no background */
+}
+
+.v-application {
+  background: transparent !important;
 }
 
 /* Small screens: 1 column */
@@ -724,6 +741,8 @@ const getProductReason = (productName: string): string => {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+
 
 /* Card Styles */
 .dashboard-card {
@@ -1391,5 +1410,6 @@ const getProductReason = (productName: string): string => {
   width: 12px;
   height: 12px;
 }
+
 
 </style>
