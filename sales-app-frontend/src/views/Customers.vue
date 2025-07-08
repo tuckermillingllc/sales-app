@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import api from '@/services/api'
+import API from '@/services/api'
 
 // ✅ Define the customer type
 interface Customer {
@@ -24,7 +24,7 @@ interface Customer {
 const customers = ref<Customer[]>([])
 
 onMounted(async () => {
-  const response = await api.get('/customers/')
+  const response = await API.get('/customers/')
   customers.value = response.data
 })
 </script>
