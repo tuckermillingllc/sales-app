@@ -24,7 +24,7 @@ interface Customer {
 const customers = ref<Customer[]>([])
 
 onMounted(async () => {
-  const response = await api.get('/customers')
+  const response = await api.get('/customers/')
   customers.value = response.data
 })
 </script>
