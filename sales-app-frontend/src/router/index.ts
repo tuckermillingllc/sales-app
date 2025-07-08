@@ -10,61 +10,7 @@ const router = createRouter({
       component: Home,
       meta: { title: 'Tucker Milling Sales Dashboard' }
     },
-    {
-      path: '/dealers',
-      name: 'Dealers',
-      component: () => import('@/views/DealersView.vue'),
-      meta: { title: 'Active Dealers' }
-    },
-    {
-      path: '/attention',
-      name: 'Attention',
-      component: () => import('@/views/AttentionView.vue'),
-      meta: { title: 'Attention Needed' }
-    },
-    {
-      path: '/locator',
-      name: 'DealerLocator',
-      component: () => import('@/views/LocatorView.vue'),
-      meta: { title: 'Dealer Locator' }
-    },
-    {
-      path: '/focus',
-      name: 'FocusProducts',
-      component: () => import('@/views/FocusView.vue'),
-      meta: { title: 'Focus Products' }
-    },
-    {
-      path: '/products',
-      name: 'Products',
-      component: () => import('@/views/ProductsView.vue'),
-      meta: { title: 'Product Catalog' }
-    },
-    {
-      path: '/faq',
-      name: 'FAQ',
-      component: () => import('@/views/FAQView.vue'),
-      meta: { title: 'Product FAQ' }
-    },
-    {
-      path: '/comparison',
-      name: 'Comparison',
-      component: () => import('@/views/ComparisonView.vue'),
-      meta: { title: 'Competitive Replacements' }
-    },
-    {
-      path: '/selection',
-      name: 'Selection',
-      component: () => import('@/views/SelectionView.vue'),
-      meta: { title: 'Product Selection Tool' }
-    },
-    {
-      path: '/profile',
-      name: 'Profile',
-      component: () => import('@/views/ProfileView.vue'),
-      meta: { title: 'User Profile' }
-    },
-    // Legacy routes
+    // Existing routes that work
     {
       path: '/customers',
       name: 'Customers',
@@ -76,6 +22,61 @@ const router = createRouter({
       name: 'About',
       component: () => import('@/views/AboutView.vue'),
       meta: { title: 'About Tucker Milling' }
+    },
+    // Placeholder routes (will be created later)
+    {
+      path: '/dealers',
+      name: 'Dealers',
+      component: Home, // Temporarily redirect to home
+      meta: { title: 'Active Dealers' }
+    },
+    {
+      path: '/attention',
+      name: 'Attention',
+      component: Home, // Temporarily redirect to home
+      meta: { title: 'Attention Needed' }
+    },
+    {
+      path: '/locator',
+      name: 'DealerLocator',
+      component: Home, // Temporarily redirect to home
+      meta: { title: 'Dealer Locator' }
+    },
+    {
+      path: '/focus',
+      name: 'FocusProducts',
+      component: Home, // Temporarily redirect to home
+      meta: { title: 'Focus Products' }
+    },
+    {
+      path: '/products',
+      name: 'Products',
+      component: Home, // Temporarily redirect to home
+      meta: { title: 'Product Catalog' }
+    },
+    {
+      path: '/faq',
+      name: 'FAQ',
+      component: Home, // Temporarily redirect to home
+      meta: { title: 'Product FAQ' }
+    },
+    {
+      path: '/comparison',
+      name: 'Comparison',
+      component: Home, // Temporarily redirect to home
+      meta: { title: 'Competitive Replacements' }
+    },
+    {
+      path: '/selection',
+      name: 'Selection',
+      component: Home, // Temporarily redirect to home
+      meta: { title: 'Product Selection Tool' }
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: Home, // Temporarily redirect to home
+      meta: { title: 'User Profile' }
     }
   ]
 })
