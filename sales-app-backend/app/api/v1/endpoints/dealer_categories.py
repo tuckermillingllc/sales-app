@@ -32,7 +32,6 @@ async def upload_dealer_categories(data: List[DealerCategory]):
     conn = await asyncpg.connect(dsn=os.getenv("DATABASE_URL"))
     try:
         await conn.execute("TRUNCATE TABLE sales_app.dealer_categories;")
-
         insert_query = """
             INSERT INTO sales_app.dealer_categories (
                 dealer_id, dealer_name, salesperson, total_bags,
@@ -48,10 +47,17 @@ async def upload_dealer_categories(data: List[DealerCategory]):
                 $16, $17
             )
         """
-
         for row in data:
             await conn.execute(insert_query, *row.dict().values())
-
         return {"status": "success", "rows": len(data)}
+    finally:
+        await conn.close()
+
+@router.get("/dealer-categories/", response_model=List[DealerCategory])
+async def get_dealer_categories():
+    conn = await asyncpg.connect(dsn=os.getenv("DATABASE_URL"))
+    try:
+        records = await conn.fetch("SELECT * FROM sales_app.dealer_categories;")
+        return [DealerCategory(**dict(row)) for row in records]
     finally:
         await conn.close()
