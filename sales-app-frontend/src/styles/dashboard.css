@@ -36,7 +36,8 @@
 }
 
 html, body {
-  background: #778797;
+  background: #778797 !important;
+  background-color: #778797 !important;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -57,7 +58,7 @@ html, body {
   max-width: 1400px;
   margin: 0 auto;
   padding: 2rem 1.5rem;
-  background: transparent;
+  background: transparent !important;
   min-height: 100vh;
 }
 
