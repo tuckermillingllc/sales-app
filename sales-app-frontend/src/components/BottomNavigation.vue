@@ -86,7 +86,7 @@ const handleTabClick = (tab: string) => {
 <style scoped>
 .bottom-nav {
   position: fixed;
-  bottom: 0;
+  bottom: 20px;
   left: 0;
   right: 0;
   background: #ffffff;
