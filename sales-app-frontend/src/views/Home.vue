@@ -8,6 +8,7 @@
         <img :src="tuckerLogo" alt="Tucker Milling" class="company-logo" />
       </div>
       <div class="brand-text">
+        <p class="welcome-message">Welcome Curran!</p>
         <p class="tagline">Sales Management Portal</p>
       </div>
     </div>
@@ -704,6 +705,16 @@ html, body {
   margin: 0;
 }
 
+.welcome-message {
+  color: var(--color-text-primary);
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0.5rem 0 0 0;
+  text-align: center;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
 /* Stats Overview Grid */
 .stats-overview-grid {
   display: grid;
@@ -1182,8 +1193,9 @@ html, body {
     text-align: center;
   }
   
+  /* Make logo bigger on mobile portrait */
   .company-logo {
-    height: 4.5rem;
+    height: 7rem; /* Increased from 4.5rem */
   }
   
   .metrics-row, .network-stats, .competitive-overview, .knowledge-stats {
@@ -1197,9 +1209,26 @@ html, body {
   }
 }
 
-@media (max-width: 480px) {
+/* Mobile landscape orientation - keep logo smaller */
+@media (max-width: 768px) and (orientation: landscape) {
   .company-logo {
-    height: 3rem;
+    height: 4rem; /* Smaller in landscape to save vertical space */
+  }
+  
+  .header {
+    padding: 1.5rem; /* Reduce header padding in landscape */
+  }
+  
+  .welcome-message {
+    font-size: 1.75rem; /* Slightly smaller but still bold header */
+    font-weight: 800;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Even bigger logo on small phones in portrait */
+  .company-logo {
+    height: 8rem; /* Increased from 3rem */
   }
   
   .alert-summary {
@@ -1214,6 +1243,18 @@ html, body {
   
   .category-pill {
     text-align: center;
+  }
+}
+
+/* Small phone landscape - keep logo reasonable */
+@media (max-width: 480px) and (orientation: landscape) {
+  .company-logo {
+    height: 3.5rem; /* Smaller in landscape */
+  }
+  
+  .welcome-message {
+    font-size: 1.5rem;
+    font-weight: 800;
   }
 }
 
