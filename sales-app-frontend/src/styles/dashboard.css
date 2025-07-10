@@ -47,6 +47,12 @@ html, body {
   padding-top: env(safe-area-inset-top);
 }
 
+/* Ensure Vue app and other containers don't override background */
+#app, .v-application, .v-application__wrap {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
 /* Base Styles */
 html, body {
   background: var(--color-bg-primary);
@@ -58,7 +64,7 @@ html, body {
   max-width: 1400px;
   margin: 0 auto;
   padding: 2rem 1.5rem;
-  background: transparent !important;
+  background: transparent;
   min-height: 100vh;
 }
 
@@ -111,10 +117,11 @@ html, body {
 /* Stats Overview Grid */
 .stats-overview-grid {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto;
   gap: 1.5rem 3rem;
   justify-content: start;
+  align-items: start;
 }
 
 /* Position items in specific grid locations */
