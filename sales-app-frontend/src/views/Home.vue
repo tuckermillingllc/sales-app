@@ -693,7 +693,7 @@ html, body {
 }
 
 .company-logo {
-  height: 6rem;
+  height: 4rem;
   width: auto;
   object-fit: contain;
 }
@@ -750,19 +750,23 @@ html, body {
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 1.25rem;
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
 /* Card Base Styles */
 .dashboard-card {
   background: var(--color-bg-primary);
   border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-lg);
+  border-radius: 16px;
   padding: 1.5rem;
   cursor: pointer;
   transition: var(--transition);
   box-shadow: var(--shadow-sm);
   position: relative;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
 }
 
 .dashboard-card:hover {
@@ -1178,7 +1182,8 @@ html, body {
   
   .dashboard-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
   }
   
   .header-content {
@@ -1193,9 +1198,9 @@ html, body {
     text-align: center;
   }
   
-  /* Make logo bigger on mobile portrait */
+  /* Keep logo reasonable size on mobile */
   .company-logo {
-    height: 7rem; /* Increased from 4.5rem */
+    height: 3.5rem;
   }
   
   .metrics-row, .network-stats, .competitive-overview, .knowledge-stats {
@@ -1207,12 +1212,17 @@ html, body {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
+  
+  .dashboard-card {
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
 }
 
 /* Mobile landscape orientation - keep logo smaller */
 @media (max-width: 768px) and (orientation: landscape) {
   .company-logo {
-    height: 4rem; /* Smaller in landscape to save vertical space */
+    height: 3rem; /* Smaller in landscape to save vertical space */
   }
   
   .header {
@@ -1223,12 +1233,25 @@ html, body {
     font-size: 1.75rem; /* Slightly smaller but still bold header */
     font-weight: 800;
   }
+  
+  .dashboard-grid {
+    margin-top: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
-  /* Even bigger logo on small phones in portrait */
+  /* Keep logo reasonable on small phones */
   .company-logo {
-    height: 8rem; /* Increased from 3rem */
+    height: 3rem;
+  }
+  
+  .dashboard-grid {
+    gap: 1rem;
+  }
+  
+  .dashboard-card {
+    border-radius: 12px;
+    padding: 1rem;
   }
   
   .alert-summary {
@@ -1249,12 +1272,16 @@ html, body {
 /* Small phone landscape - keep logo reasonable */
 @media (max-width: 480px) and (orientation: landscape) {
   .company-logo {
-    height: 3.5rem; /* Smaller in landscape */
+    height: 2.5rem; /* Smaller in landscape */
   }
   
   .welcome-message {
     font-size: 1.5rem;
     font-weight: 800;
+  }
+  
+  .dashboard-grid {
+    margin-top: 1rem;
   }
 }
 
