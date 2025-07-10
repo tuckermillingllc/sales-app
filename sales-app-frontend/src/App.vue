@@ -36,7 +36,7 @@ watch(
       '/products': 'products',
       '/locator': 'map',
       '/attention': 'alerts',
-      '/profile': 'profile'
+ 
     }
     
     currentTab.value = routeToTab[newPath] || 'dashboard'
@@ -55,7 +55,7 @@ const handleTabChange = (tab: string) => {
     'products': '/products',
     'map': '/locator',
     'alerts': '/attention',
-    'profile': '/profile'
+
   }
   
   const targetRoute = tabToRoute[tab]
