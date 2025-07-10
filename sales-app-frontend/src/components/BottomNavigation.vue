@@ -86,7 +86,7 @@ const handleTabClick = (tab: string) => {
 <style scoped>
 .bottom-nav {
   position: fixed;
-  bottom: 20px;
+  bottom: 0;  /* Back to bottom of screen */
   left: 0;
   right: 0;
   background: #ffffff;
@@ -102,19 +102,19 @@ const handleTabClick = (tab: string) => {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 0 16px;
+  padding: 0 24px;  /* Increased from 16px to account for curved corners */
 }
 
 .nav-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 8px 12px;
+  padding: 8px 16px;  /* Increased horizontal padding */
   text-decoration: none;
   color: #9ca3af;
   transition: all 0.2s ease;
   border-radius: 8px;
-  min-width: 60px;
+  min-width: 64px;  /* Increased from 60px */
   position: relative;
 }
 
@@ -167,12 +167,12 @@ const handleTabClick = (tab: string) => {
 
 @media (max-width: 768px) {
   .nav-container {
-    padding: 0 8px;
+    padding: 0 20px;  /* Increased padding for curved corners */
   }
 
   .nav-item {
-    padding: 6px 8px;
-    min-width: 52px;
+    padding: 6px 12px;  /* Increased horizontal padding */
+    min-width: 56px;  /* Increased from 52px */
   }
 
   .nav-icon svg {
