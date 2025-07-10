@@ -91,7 +91,7 @@ const handleTabClick = (tab: string) => {
   right: 0;
   background: #ffffff;
   border-top: 1px solid #e5e7eb;
-  padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+  padding: 8px 0 max(20px, env(safe-area-inset-bottom));
   z-index: 1000;
   box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.05);
 }
