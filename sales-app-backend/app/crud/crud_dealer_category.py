@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from sqlalchemy import or_, func
 from app.db.models.dealer_category import DealerCategory
 from app.schemas.dealer_category import DealerCategoryCreate, DealerCategoryBase
 
@@ -47,17 +48,20 @@ def count_active_dealers(db: Session) -> int:
     """Dealers with avg_days_between_orders <= 45"""
     return db.query(DealerCategory).filter(DealerCategory.avg_days_between_orders <= 45).count()
 
+from sqlalchemy import func
+
 def count_dealers_needing_attention(db: Session) -> int:
-    """Dealers with avg_days_between_orders > 45 or 'sporadic'/null frequency"""
-    return db.query(DealerCategory).filter(
+    """Dealers with avg_days_between_orders > 45 or 'sporadic'/null frequency (case-insensitive)"""
+    return db.query(func.count(DealerCategory.dealer_id)).filter(
         or_(
             DealerCategory.avg_days_between_orders > 45,
             DealerCategory.purchase_frequency == None,
-            DealerCategory.purchase_frequency.ilike("sporadic")
+            func.lower(DealerCategory.purchase_frequency) == "sporadic"
         )
-    ).count()
+    ).scalar()
 
-def get_active_dealers(db: Session) -> List[Dict]:
+
+def get_active_dealers(db: Session) -> list[dict]:
     """Top active dealers with placeholder growth metrics"""
     rows = db.query(DealerCategory).filter(DealerCategory.avg_days_between_orders <= 45).limit(10).all()
     return [
@@ -71,7 +75,7 @@ def get_active_dealers(db: Session) -> List[Dict]:
         for row in rows
     ]
 
-def get_attention_dealers(db: Session) -> List[Dict]:
+def get_attention_dealers(db: Session) -> list[dict]:
     """Dealers who need attention due to inactivity or low frequency"""
     rows = db.query(DealerCategory).filter(
         or_(
