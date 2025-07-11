@@ -563,7 +563,7 @@ const fastestGrowingProducts = ref<GrowingProduct[]>([
 
 onMounted(async () => {
   try {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/dashboard/stats`);
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/api/v1/dashboard/stats`);
     const data = await res.json();
     console.log('Dashboard data:', data);
 
