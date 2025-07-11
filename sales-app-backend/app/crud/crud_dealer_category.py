@@ -42,3 +42,51 @@ def delete_dealer_category(db: Session, category_id: int):
     db.delete(db_category)
     db.commit()
     return db_category
+
+def count_active_dealers(db: Session) -> int:
+    """Dealers with avg_days_between_orders <= 45"""
+    return db.query(DealerCategory).filter(DealerCategory.avg_days_between_orders <= 45).count()
+
+def count_dealers_needing_attention(db: Session) -> int:
+    """Dealers with avg_days_between_orders > 45 or 'sporadic'/null frequency"""
+    return db.query(DealerCategory).filter(
+        or_(
+            DealerCategory.avg_days_between_orders > 45,
+            DealerCategory.purchase_frequency == None,
+            DealerCategory.purchase_frequency.ilike("sporadic")
+        )
+    ).count()
+
+def get_active_dealers(db: Session) -> List[Dict]:
+    """Top active dealers with placeholder growth metrics"""
+    rows = db.query(DealerCategory).filter(DealerCategory.avg_days_between_orders <= 45).limit(10).all()
+    return [
+        {
+            "id": row.dealer_id,
+            "name": row.dealer_name,
+            "status": "active",
+            "metric": "+12%",  # Placeholder — update with real calculation if available
+            "metricType": "positive"
+        }
+        for row in rows
+    ]
+
+def get_attention_dealers(db: Session) -> List[Dict]:
+    """Dealers who need attention due to inactivity or low frequency"""
+    rows = db.query(DealerCategory).filter(
+        or_(
+            DealerCategory.avg_days_between_orders > 45,
+            DealerCategory.purchase_frequency == None,
+            DealerCategory.purchase_frequency.ilike("sporadic")
+        )
+    ).limit(10).all()
+    return [
+        {
+            "id": row.dealer_id,
+            "name": row.dealer_name,
+            "status": "declining",  # You could customize based on how "stopped" is defined
+            "metric": "-25%",  # Placeholder
+            "metricType": "negative"
+        }
+        for row in rows
+    ]
