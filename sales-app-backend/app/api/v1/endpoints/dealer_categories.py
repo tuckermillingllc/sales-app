@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from typing import List
 
 from app.api import deps
-from app.schemas import DealerCategory, DealerCategoryCreate, DealerCategoryUpdate
+from app.schemas.dealer_category import DealerCategory, DealerCategoryCreate, DealerCategoryBase
 from app.crud import crud_dealer_category
 
 router = APIRouter()
@@ -24,7 +24,7 @@ def read_dealer_category(category_id: int, db: Session = Depends(deps.get_db)):
     return category
 
 @router.put("/{category_id}", response_model=DealerCategory)
-def update_dealer_category(category_id: int, category: DealerCategoryUpdate, db: Session = Depends(deps.get_db)):
+def update_dealer_category(category_id: int, category: DealerCategoryBase, db: Session = Depends(deps.get_db)):
     updated_category = crud_dealer_category.update_dealer_category(db, category_id, category)
     if not updated_category:
         raise HTTPException(status_code=404, detail="Dealer category not found")
