@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
 
-from app import deps
+from app.api import deps
 from app.schemas import DealerCategory, DealerCategoryCreate, DealerCategoryUpdate
 from app.crud import crud_dealer_category
 
