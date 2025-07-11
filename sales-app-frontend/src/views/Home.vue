@@ -503,22 +503,12 @@ interface GrowingProduct {
 const router = useRouter()
 
 // Reactive data
-const totalDealers = ref(23)
+const totalDealers = ref(0)
 
 // Sample data
-const activeDealers = ref<Dealer[]>([
-  { id: 1, name: 'Farmland Feed & Supply', status: 'active', metric: '+12%', metricType: 'positive' },
-  { id: 2, name: 'Heritage Farm Supply', status: 'active', metric: '+15%', metricType: 'positive' },
-  { id: 3, name: 'Country Store Co-op', status: 'active', metric: '+8%', metricType: 'positive' },
-  { id: 4, name: 'Rural Feed Solutions', status: 'active', metric: '+5%', metricType: 'positive' }
-])
+const activeDealers = ref<Dealer[]>([])
 
-const attentionDealers = ref<Dealer[]>([
-  { id: 1, name: 'Valley Feed & Grain', status: 'declining', metric: '-25%', metricType: 'negative' },
-  { id: 2, name: 'Prairie Farm Store', status: 'stopped', metric: '6 weeks', metricType: 'warning' },
-  { id: 3, name: 'Midwest Ag Supply', status: 'declining', metric: '-15%', metricType: 'negative' },
-  { id: 4, name: 'Sunset Feed Co.', status: 'stopped', metric: '4 weeks', metricType: 'warning' }
-])
+const attentionDealers = ref<Dealer[]>([])
 
 const nearbyDealers = ref<Location[]>([
   { id: 1, name: 'Southern States Co-op', address: 'Huntsville, AL', distance: '12 mi' },
