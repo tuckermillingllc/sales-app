@@ -444,7 +444,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted} from 'vue'
 import { useRouter } from 'vue-router'
 import tuckerLogo from '@/assets/tucker-logo.png'
 import '@/styles/dashboard.css'
@@ -570,6 +570,19 @@ const fastestGrowingProducts = ref<GrowingProduct[]>([
   { id: 4, name: 'Broiler Maker 22', period: 'Last 30 days', growthRate: 24 },
   { id: 5, name: 'Safe Choice Senior', period: 'Last 30 days', growthRate: 18 }
 ])
+
+onMounted(async () => {
+  try {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/dashboard/stats`);
+    const data = await res.json();
+    totalDealers.value = data.active_count;
+    activeDealers.value = data.active_dealers;
+    attentionDealers.value = data.attention_dealers;
+  } catch (err) {
+    console.error('Failed to fetch dashboard stats:', err);
+  }
+});
+
 
 const getGrowthClass = (growthRate: number): string => {
   if (growthRate >= 35) return 'growth-high'
