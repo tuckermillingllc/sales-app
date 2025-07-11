@@ -26,5 +26,11 @@ class DealerCategoryBase(BaseModel):
 class DealerCategoryCreate(DealerCategoryBase):
     pass
 
+class DealerCategoryUpdate(DealerCategoryBase):
+    pass  # All fields optional for update
+
 class DealerCategory(DealerCategoryBase):
-    pass
+    dealer_id: int
+
+    class Config:
+        from_attributes = True  # for Pydantic v2, replaces orm_mode = True

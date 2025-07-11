@@ -13,3 +13,4 @@ def get_dashboard_stats(db: Session = Depends(deps.get_db)):
         "active_dealers": crud_dealer_category.get_active_dealers(db),
         "attention_dealers": crud_dealer_category.get_attention_dealers(db)
     }
+
