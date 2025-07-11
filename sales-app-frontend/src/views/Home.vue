@@ -565,14 +565,20 @@ onMounted(async () => {
   try {
     const res = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/dashboard/stats`);
     const data = await res.json();
-    totalDealers.value = data.active_count;
-    activeDealers.value = data.active_dealers;
-    attentionDealers.value = data.attention_dealers;
+    console.log('Dashboard data:', data);
+
+    // Validate before assigning
+    if (data && Array.isArray(data.active_dealers) && Array.isArray(data.attention_dealers)) {
+      totalDealers.value = data.active_count ?? 0;
+      activeDealers.value = data.active_dealers;
+      attentionDealers.value = data.attention_dealers;
+    } else {
+      console.error('Unexpected data structure:', data);
+    }
   } catch (err) {
     console.error('Failed to fetch dashboard stats:', err);
   }
 });
-
 
 const getGrowthClass = (growthRate: number): string => {
   if (growthRate >= 35) return 'growth-high'
