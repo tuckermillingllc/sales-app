@@ -624,20 +624,28 @@ html, body {
   }
   
   .stats-overview-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-  }
+  display: grid;
+  grid-template-columns: 1fr 1fr;  /* Two columns */
+  grid-template-rows: auto auto;  /* Two rows */
+  gap: 1rem 2rem;
+  width: 100%;
+}
   
   /* Reset grid positioning for mobile */
-  .stats-overview-grid .stat-item:nth-child(1),
-  .stats-overview-grid .stat-item:nth-child(2),
-  .stats-overview-grid .stat-item:nth-child(3) {
-    grid-column: unset;
-    grid-row: unset;
-  }
-  
+ .stats-overview-grid .stat-item:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.stats-overview-grid .stat-item:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.stats-overview-grid .stat-item:nth-child(3) {
+  grid-column: 1;
+  grid-row: 2;
+}
   .dashboard-card {
     border-radius: 12px;
     padding: 1.25rem;
