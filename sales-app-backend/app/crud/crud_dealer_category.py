@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from app.db.models.dealer_category import DealerCategory
-from app.schemas.dealer_category import DealerCategoryCreate, DealerCategoryUpdate
+from app.schemas.dealer_category import DealerCategoryCreate, DealerCategoryBase
 
 
 def get_dealer_categories(db: Session):
@@ -22,7 +22,7 @@ def create_dealer_category(db: Session, category: DealerCategoryCreate):
     return db_category
 
 
-def update_dealer_category(db: Session, category_id: int, category_update: DealerCategoryUpdate):
+def update_dealer_category(db: Session, category_id: int, category_update: DealerCategoryBase):
     """Update an existing dealer category by ID."""
     db_category = db.query(DealerCategory).filter(DealerCategory.id == category_id).first()
     if not db_category:
