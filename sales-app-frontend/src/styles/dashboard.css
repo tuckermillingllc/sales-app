@@ -40,8 +40,8 @@
 }
 
 html, body {
-  background: --bgcolor !important;
-  background-color: --bgcolor !important;
+  background: var(--bgcolor) !important;
+  background-color: var(--bgcolor) !important;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -53,14 +53,14 @@ html, body {
 
 /* Ensure Vue app and other containers don't override background */
 #app, .v-application, .v-application__wrap, .v-main, .v-content {
-  background: --bgcolor !important;
-  background-color: --bgcolor !important;
+  background: var(--bgcolor) !important;
+  background-color: var(--bgcolor) !important;
 }
 
 /* Ensure dashboard container also has background */
 .dashboard {
-  background: --bgcolor !important;
-  background-color: --bgcolor !important;
+  background: var(--bgcolor) !important;
+  background-color: var(--bgcolor) !important;
 }
 
 /* Base Styles */
