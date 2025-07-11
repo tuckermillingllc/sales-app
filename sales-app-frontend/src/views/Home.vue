@@ -615,10 +615,9 @@ const getProductReason = (productName: string): string => {
 }
 
 function onRefresh(done: () => void) {
-  setTimeout(() => {
-    console.log('Refreshed');
-    done();
-  }, 1000);
+  // Refresh the current route
+  router.go(0); // This reloads the current route
+  done();
 }
 </script>
 
